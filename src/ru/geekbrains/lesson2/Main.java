@@ -1,5 +1,9 @@
 package ru.geekbrains.lesson2;
 
+import lesson2.Array;
+import lesson2.ArrayImpl;
+import ru.geekbrains.lesson2.HomeworkArrayImpl;
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 

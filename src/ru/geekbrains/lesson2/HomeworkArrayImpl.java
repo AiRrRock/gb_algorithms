@@ -1,5 +1,7 @@
 package ru.geekbrains.lesson2;
 
+import lesson2.Array;
+
 import java.util.Arrays;
 
 public class HomeworkArrayImpl<E extends Comparable<? super E>> implements Array<E> {
