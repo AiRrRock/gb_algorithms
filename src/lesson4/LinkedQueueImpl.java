@@ -2,9 +2,11 @@ package lesson4;
 
 import lesson3.queue.Queue;
 
-public class LinkedQueueImpl<E> implements Queue<E> {
+import java.util.Iterator;
 
-    private final TwoSideLinkedList<E> data;
+public class LinkedQueueImpl<E> implements Queue<E>, Iterable<E> {
+
+    protected final TwoSideLinkedList<E> data;
 
     public LinkedQueueImpl() {
         this.data = new TwoSideLinkedListImpl<>();
@@ -39,5 +41,10 @@ public class LinkedQueueImpl<E> implements Queue<E> {
     @Override
     public boolean isFull() {
         return false;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return data.iterator();
     }
 }
