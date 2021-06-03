@@ -36,18 +36,19 @@ public class ConcurrencyMainDZ {
 
         ExecutorService executorService = Executors.newFixedThreadPool(3);
 
-        List<Runnable> tasks = List.of(
+
+        /*List<Runnable> tasks = List.of(
                 measureTime(arr1::sortBubble, "Sort Bubble"),
                 measureTime(arr2::sortSelect, "Sort Select"),
                 measureTime(arr3::sortInsert, "Sort Insert")
         );
-
+*/
 //        for (Runnable task : tasks) {
 //            task.run();
 //        }
 
-        tasks.forEach(executorService::execute);
-
+        /*tasks.forEach(executorService::execute);
+*/
 //        for (Runnable task : tasks) {
 //            executorService.execute(task);
 //        }

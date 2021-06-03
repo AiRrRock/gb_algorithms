@@ -1,8 +1,11 @@
 package lesson4;
 
-import java.util.Iterator;
+import lesson4.iterator.ListIterator;
 
-public class SimpleLinkedListImpl<E> implements LinkedList<E>, Iterable<E> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
     protected int size;
     protected Node<E> firstElement;
@@ -111,14 +114,20 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E>, Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new SimpleLinkedListIterator(firstElement);
+        return new LinkedListIterator();
     }
 
-    private class SimpleLinkedListIterator implements Iterator<E> {
-        private Node<E> current;
 
-        public SimpleLinkedListIterator(Node<E> current) {
-            this.current = current;
+    private class LinkedListIterator implements ListIterator<E> {
+
+        private final SimpleLinkedListImpl<E> list;
+
+        private Node<E> current;
+        private Node<E> previous;
+
+        public LinkedListIterator() {
+            this.list = SimpleLinkedListImpl.this;
+            reset();
         }
 
         @Override
@@ -128,16 +137,65 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E>, Iterable<E> {
 
         @Override
         public E next() {
-            if(hasNext()){
-                E result = current.item;
-                current = current.next;
-                return result;
+            if (!hasNext()) {
+                throw new NoSuchElementException();
             }
-            return null;
+
+            E nextValue = current.item;
+            previous = current;
+            current = current.next;
+            return nextValue;
         }
 
+        @Override
+        public void remove() {
+            if (previous == null) {
+                list.firstElement = current.next;
+                reset();
+            } else {
+                previous.next = current.next;
+                if ( !hasNext() ) {
+                    reset();
+                } else {
+                    current = current.next;
+                }
+            }
+        }
+
+        @Override
+        public void reset() {
+            current = list.firstElement;
+            previous = null;
+        }
+
+        @Override
+        public void insertBefore(E value) {
+            Node<E> newItem = new Node<>(value, null);
+            if(previous == null) {
+                newItem.next = list.firstElement;
+                list.firstElement = newItem;
+                reset();
+            }
+            else {
+                newItem.next = previous.next;
+                previous.next = newItem;
+                current = newItem;
+            }
+
+        }
+
+        @Override
+        public void insertAfter(E value) {
+            Node<E> newItem = new Node<>(value, null);
+            if (list.isEmpty()){
+                list.firstElement = newItem;
+                current = newItem;
+            } else {
+                newItem.next = current.next;
+                current.next = newItem;
+                next();
+            }
+        }
 
     }
-
-
 }

@@ -2,11 +2,15 @@ package lesson4;
 
 public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements TwoSideLinkedList<E>, Iterable<E> {
 
-    private Node<E> lastElement;
+    protected Node<E> lastElement;
 
     @Override
     public void insertLast(E value) {
         Node<E> newNode = new Node<>(value, null);
+        insertLastNode(newNode);
+    }
+
+    protected void insertLastNode(Node<E> newNode) {
         if (isEmpty()) {
             firstElement = newNode;
         } else {

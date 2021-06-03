@@ -1,3 +1,4 @@
+/*
 package lesson3.stack;
 
 import java.util.Map;
@@ -10,11 +11,13 @@ public class Brackets {
 //               };
 //               """;
 
-    private static final Map<Character, Character> BRACKETS_MAP = Map.of(
+  */
+/*  private static final Map<Character, Character> BRACKETS_MAP = Map.of(
             '{', '}',
             '[', ']',
             '(', ')'
-    );
+    );*//*
+
 
     public static void main(String[] args) {
         new Brackets().check(TEXT_EXAMPLE);
@@ -46,3 +49,4 @@ public class Brackets {
     }
 
 }
+*/
