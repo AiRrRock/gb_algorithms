@@ -1,6 +1,6 @@
 package lesson4;
 
-public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements TwoSideLinkedList<E> {
+public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements TwoSideLinkedList<E>, Iterable<E> {
 
     private Node<E> lastElement;
 
@@ -31,6 +31,16 @@ public class TwoSideLinkedListImpl<E> extends SimpleLinkedListImpl<E> implements
             lastElement = null;
         }
 
+        return removedValue;
+    }
+
+    public E removeLast() {
+        E removedValue = lastElement.item;
+        remove(lastElement.item);
+        if (isEmpty()) {
+            lastElement = null;
+            firstElement = null;
+        }
         return removedValue;
     }
 

@@ -2,7 +2,7 @@ package lesson4;
 
 import java.util.Iterator;
 
-public class SimpleLinkedListImpl<E> implements LinkedList<E> {
+public class SimpleLinkedListImpl<E> implements LinkedList<E>, Iterable<E> {
 
     protected int size;
     protected Node<E> firstElement;
@@ -111,6 +111,33 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new SimpleLinkedListIterator(firstElement);
     }
+
+    private class SimpleLinkedListIterator implements Iterator<E> {
+        private Node<E> current;
+
+        public SimpleLinkedListIterator(Node<E> current) {
+            this.current = current;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            if(hasNext()){
+                E result = current.item;
+                current = current.next;
+                return result;
+            }
+            return null;
+        }
+
+
+    }
+
+
 }
