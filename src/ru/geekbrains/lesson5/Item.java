@@ -1,16 +1,15 @@
 package ru.geekbrains.lesson5;
 
-import com.sun.istack.internal.NotNull;
+
 
 import java.util.Objects;
 
 public class Item {
-    @NotNull
     private String name;
     private int weight;
     private int price;
 
-    public Item(@NotNull String name, int weight, int price) {
+    public Item(/*@NotNull*/ String name, int weight, int price) {
         this.name = name;
         this.weight = weight;
         this.price = price;
